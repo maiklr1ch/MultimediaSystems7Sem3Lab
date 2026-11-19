@@ -1,0 +1,79 @@
+@import 'tailwindcss';
+
+/*
+  Інтерфейс навмисно безбарвний: усі сірі нейтральні (R = G = B), щоб оточення не впливало
+  на сприйняття сірих зображень. Колір має лише одну роль — розрізняти два методи:
+  DCT — синій, DWT — оранжевий (перевірено на розрізнюваність при порушеннях кольорового зору).
+*/
+:root {
+  --page: #ececec;
+  --panel: #f7f7f7;
+  --line: #d3d3d3;
+  --ink: #161616;
+  --ink-2: #4d4d4d;
+  --ink-3: #6b6b6b;
+  --well: #808080;
+  --dct: #2a78d6;
+  --dwt: #eb6834;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page: #1b1b1b;
+    --panel: #252525;
+    --line: #393939;
+    --ink: #ededed;
+    --ink-2: #b3b3b3;
+    --ink-3: #8f8f8f;
+    --well: #808080;
+    --dct: #3987e5;
+    --dwt: #d95926;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-page: var(--page);
+  --color-panel: var(--panel);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-well: var(--well);
+  --color-dct: var(--dct);
+  --color-dwt: var(--dwt);
+  --font-sans: 'Manrope Variable', system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+  }
+
+  input[type='range'] {
+    accent-color: var(--ink);
+  }
+
+  button,
+  select,
+  input {
+    font: inherit;
+    color: inherit;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
